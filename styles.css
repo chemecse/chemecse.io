@@ -55,6 +55,16 @@ a {
   color: var(--text-03);
 }
 
+.heading-small-selectable {
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--text-01);
+}
+
+.heading-small-selectable:hover {
+  color: var(--text-01-highlight);
+}
+
 .heading-tiny {
   font-size: 16px;
   line-height: 20px;
@@ -66,12 +76,12 @@ a {
   color: var(--text-01);
 }
 
-.link {
+.text-selectable {
   font-size: 14px;
   color: var(--text-02);
 }
 
-.link:hover {
+.text-selectable:hover {
   color: var(--text-02-highlight);
 }
 
@@ -82,16 +92,6 @@ a {
 .post-date {
   margin: 10px 5px 10px 0;
   color: var(--text-02);
-}
-
-.post-link {
-  font-size: 20px;
-  text-decoration: none;
-  color: var(--text-01);
-}
-
-.post-link:hover {
-  color: var(--text-01-highlight);
 }
 
 .post-link-date {
