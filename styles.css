@@ -10,6 +10,18 @@
 
 /* base */
 
+h1, h2, h3, h4, h5, h6, p, a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
 body {
   font-family: monospace;
   background-color: var(--color-base);
@@ -17,6 +29,39 @@ body {
 
 a, a:visited {
   text-decoration: none;
+}
+
+h2 {
+  font-size: 52px;
+  line-height: 65px;
+  color: var(--text-01);
+}
+
+h3 {
+  font-size: 36px;
+  line-height: 45px;
+  color: var(--text-01);
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--text-01);
+}
+
+h5 {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--text-01);
+}
+
+p {
+  font-size: 14px;
+  color: var(--text-01);
+}
+
+.selectable {
+  color: var(--text-02);
 }
 
 /* layout */
@@ -27,6 +72,10 @@ a, a:visited {
   padding: 0 30px;
 }
 
+.l-inline {
+  display: inline-block
+}
+
 /* module */
 
 .divider {
@@ -34,44 +83,6 @@ a, a:visited {
   border-width: 2px
 }
 
-.heading-large {
-  font-size: 52px;
-  line-height: 65px;
-  color: var(--text-01);
-}
-
-.heading-medium {
-  font-size: 36px;
-  line-height: 45px;
-  color: var(--text-01);
-}
-
-.heading-small {
-  font-size: 20px;
-  line-height: 25px;
-  color: var(--text-01);
-}
-
-.heading-small {
-  font-size: 20px;
-  line-height: 25px;
-  color: var(--text-01);
-}
-
-.heading-tiny {
-  font-size: 16px;
-  line-height: 20px;
-  color: var(--text-01);
-}
-
-.text {
-  font-size: 14px;
-  color: var(--text-01);
-}
-
-.selectable {
-  color: var(--text-02);
-}
 
 .selectable:hover {
   color: var(--text-02-highlight);
