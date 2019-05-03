@@ -76,6 +76,16 @@ p {
   display: inline-block
 }
 
+.l-flex-horizontal {
+  display: flex;
+  flex-direction: row;
+}
+
+.l-flex-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
 /* module */
 
 .divider {
