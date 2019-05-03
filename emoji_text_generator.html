@@ -23,14 +23,15 @@
           <label for="background-emoji">Background emoji:</label>
           <input type="text" id="background-emoji">
         </div>
+        <label for="input-text">Text:</label>
+        <input type="text" id="input-text">
       </div>
-      <div id="checkbox-grid" style="margin: 12px 0"></div>
       <div>
         <button type="button" id="generate-button">Generate!</button>
       </div>
       <div style="margin: 12px 0">
         <p>Generated emoji text:</p>
-        <textarea id="generated-emoji-text" style="width: 352px; height: 152px" readonly /></textarea>
+        <textarea id="generated-emoji-text" style="width: 600px; height: 152px" readonly /></textarea>
       </div>
     </div>
   </div>
@@ -62,55 +63,230 @@
     </div>
   </div>
   <script type="text/javascript">
-    const gridWidth = 18;
-    const gridHeight = 7;
+    const fontHeight = 5;
 
-    function getCheckboxId(row, col) {
-      return `checkbox-${row}-${col}`;
-    }
-
-    function createCheckboxGrid() {
-      const checkboxGridDiv = document.getElementById('checkbox-grid');
-      checkboxGridDiv.class = 'l-flex-vertical';
-
-      for (let i = 0, iLen = gridHeight; i < iLen; ++i) {
-        const checkboxRow = document.createElement('div');
-        checkboxRow.class = 'l-felx-horizontal';
-        for (let j = 0, jLen = gridWidth; j < jLen; ++j) {
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.id = getCheckboxId(i, j);
-          checkboxRow.appendChild(checkbox);
-        }
-        checkboxGridDiv.appendChild(checkboxRow);
-      }      
-    }
+    const font = {
+      'a': [
+        '0110',
+        '1001',
+        '1111',
+        '1001',
+        '1001'
+      ],
+      'b': [
+        '1110',
+        '1001',
+        '1111',
+        '1001',
+        '1110'
+      ],
+      'c': [
+        '0110',
+        '1001',
+        '1000',
+        '1001',
+        '0110'
+      ],
+      'd': [
+        '1110',
+        '1001',
+        '1001',
+        '1001',
+        '1110'
+      ],
+      'e': [
+        '1111',
+        '1000',
+        '1111',
+        '1000',
+        '1111'
+      ],
+      'f': [
+        '1111',
+        '1000',
+        '1111',
+        '1000',
+        '1000'
+      ],
+      'h': [
+        '1001',
+        '1001',
+        '1111',
+        '1001',
+        '1001'
+      ],
+      'i': [
+        '1',
+        '1',
+        '1',
+        '1',
+        '1'
+      ],
+      'j': [
+        '0001',
+        '0001',
+        '0001',
+        '1001',
+        '0110'
+      ],
+      'k': [
+        '1001',
+        '1010',
+        '1100',
+        '1010',
+        '1001'
+      ],
+      'l': [
+        '1000',
+        '1000',
+        '1000',
+        '1000',
+        '1111'
+      ],
+      'm': [
+        '10001',
+        '11011',
+        '10101',
+        '10001',
+        '10001'
+      ],
+      'n': [
+        '10001',
+        '11001',
+        '10101',
+        '10011',
+        '10001'
+      ],
+      'o': [
+        '0110',
+        '1001',
+        '1001',
+        '1001',
+        '0110'
+      ],
+      'p': [
+        '1110',
+        '1001',
+        '1110',
+        '1000',
+        '1000'
+      ],
+      'q': [
+        '0110',
+        '1001',
+        '1001',
+        '0110',
+        '0001'
+      ],
+      'r': [
+        '1110',
+        '1001',
+        '1110',
+        '1010',
+        '1001'
+      ],
+      's': [
+        '0111',
+        '1000',
+        '0110',
+        '0001',
+        '1110'
+      ],
+      't': [
+        '111',
+        '010',
+        '010',
+        '010',
+        '010'
+      ],
+      'u': [
+        '1001',
+        '1001',
+        '1001',
+        '1001',
+        '0110'
+      ],
+      'v': [
+        '10001',
+        '10001',
+        '01010',
+        '01010',
+        '00100'
+      ],
+      'w': [
+        '10001',
+        '10101',
+        '10101',
+        '10101',
+        '01010'
+      ],
+      'x': [
+        '10001',
+        '01010',
+        '00100',
+        '01010',
+        '10001'
+      ],
+      'y': [
+        '10001',
+        '01010',
+        '00100',
+        '00100',
+        '00100'
+      ],
+      'z': [
+        '111',
+        '001',
+        '010',
+        '100',
+        '111'
+      ]
+    };
 
     function clearInputFields() {
       document.getElementById('foreground-emoji').value = '🕰️';
       document.getElementById('background-emoji').value = '🎉';
+      document.getElementById('input-text').value = '';
       document.getElementById('generated-emoji-text').value = '';
+    }
+
+    function emojiFromBinary(binaryString, foregroundEmoji, backgroundEmoji) {
+      let emojiString = '';
+      for (let i = 0, iLen = binaryString.length; i < iLen; ++i) {
+        emojiString += (binaryString[i] === '1') ? foregroundEmoji : backgroundEmoji;
+      }
+      return emojiString;
     }
 
     function generateEmojiText() {
       const foregroundEmoji = document.getElementById('foreground-emoji').value;
       const backgroundEmoji = document.getElementById('background-emoji').value;
+      const inputText = document.getElementById('input-text').value;
 
       let text = '';
-      for (let i = 0, iLen = gridHeight; i < iLen; ++i) {
-        for (let j = 0, jLen = gridWidth; j < jLen; ++j) {
-          const isChecked = document.getElementById(getCheckboxId(i, j)).checked;
-          text += isChecked ? foregroundEmoji : backgroundEmoji;
+      let textWidth;
+      for (let i = 0, iLen = fontHeight; i < iLen; ++i) {
+        textWidth = 0;
+        for (let j = 0, jLen = inputText.length; j < jLen; ++j) {
+          const fontIndex = inputText[j].toLowerCase();
+          const fontCharacter = font[fontIndex];
+          if (!fontCharacter) continue;
+          const binaryString = `0${fontCharacter[i]}0`;
+          textWidth += binaryString.length;
+          text += emojiFromBinary(binaryString, foregroundEmoji, backgroundEmoji);
         }
         text += '\n';
       }
+
+      const emptyLine = backgroundEmoji.repeat(textWidth);
+      text = `${emptyLine}\n${text}${emptyLine}`;
+
       console.log(text);
 
       const generatedEmoijTextElement = document.getElementById('generated-emoji-text');
       generatedEmoijTextElement.value = text;
     }
 
-    createCheckboxGrid();
     clearInputFields();
 
     const generateButton = document.getElementById('generate-button');
