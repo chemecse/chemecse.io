@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<style type="text/css">
+			#canvas {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+				border: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				display: block;
+			}
+
+      .facet-buttons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+				overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .facet-button {
+        width: 80px;
+        height: 80px;
+        margin: 20px;
+
+      }
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+    <div class="facet-buttons">
+      <button id="decrease-facets" class="facet-button">-</button>
+      <button id="increase-facets" class="facet-button">+</button>
+    </div>
+		<script type="text/javascript">
+			var Module = {
+				canvas: (function() {
+					var canvas = document.getElementById('canvas');
+					return canvas;
+				})()
+			};
+		</script>
+    <script type="text/javascript">
+      const increaseFacetsButton = document.getElementById('increase-facets');
+      const decreaseFacetsButton = document.getElementById('decrease-facets');
+
+      decreaseFacetsButton.onclick = function() {
+        if (Module._decrease_facets) {
+          const facetCount = Module._decrease_facets();
+          console.log('decrease facets', facetCount);
+        }
+      };
+      increaseFacetsButton.onclick = function() {
+        if (Module._increase_facets) {
+          const facetCount = Module._increase_facets();
+          console.log('increase facets', facetCount);
+        }
+      };
+    </script>
+    <script src="./demo.js"></script>
+	</body>
+</html>

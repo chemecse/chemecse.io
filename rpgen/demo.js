@@ -1230,11 +1230,11 @@ function updateGlobalBufferViews() {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 22944,
+    STACK_BASE = 23104,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5265824,
-    DYNAMIC_BASE = 5265824,
-    DYNAMICTOP_PTR = 22912;
+    STACK_MAX = 5265984,
+    DYNAMIC_BASE = 5265984,
+    DYNAMICTOP_PTR = 23072;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1581,7 +1581,7 @@ function isDataURI(filename) {
 
 
 
-var wasmBinaryFile = 'rpgen_demo.wasm';
+var wasmBinaryFile = 'demo.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }
@@ -1749,7 +1749,7 @@ function __sapp_js_unfocus_textfield(){ document.getElementById("_sokol_app_inpu
 
 
 
-// STATICTOP = STATIC_BASE + 21920;
+// STATICTOP = STATIC_BASE + 22080;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1760,7 +1760,7 @@ function __sapp_js_unfocus_textfield(){ document.getElementById("_sokol_app_inpu
 
 
 /* no memory initializer */
-var tempDoublePtr = 22928
+var tempDoublePtr = 23088
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
@@ -3625,6 +3625,13 @@ asm["__sapp_emsc_notify_keyboard_hidden"] = function() {
   return real___sapp_emsc_notify_keyboard_hidden.apply(null, arguments);
 };
 
+var real__decrease_facets = asm["_decrease_facets"];
+asm["_decrease_facets"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__decrease_facets.apply(null, arguments);
+};
+
 var real__fflush = asm["_fflush"];
 asm["_fflush"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
@@ -3637,6 +3644,13 @@ asm["_free"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return real__free.apply(null, arguments);
+};
+
+var real__increase_facets = asm["_increase_facets"];
+asm["_increase_facets"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return real__increase_facets.apply(null, arguments);
 };
 
 var real__main = asm["_main"];
@@ -3718,6 +3732,12 @@ var __sapp_emsc_notify_keyboard_hidden = Module["__sapp_emsc_notify_keyboard_hid
   return Module["asm"]["__sapp_emsc_notify_keyboard_hidden"].apply(null, arguments)
 };
 
+var _decrease_facets = Module["_decrease_facets"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_decrease_facets"].apply(null, arguments)
+};
+
 var _fflush = Module["_fflush"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
@@ -3728,6 +3748,12 @@ var _free = Module["_free"] = function() {
   assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
   assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
   return Module["asm"]["_free"].apply(null, arguments)
+};
+
+var _increase_facets = Module["_increase_facets"] = function() {
+  assert(runtimeInitialized, 'you need to wait for the runtime to be ready (e.g. wait for main() to be called)');
+  assert(!runtimeExited, 'the runtime was exited (use NO_EXIT_RUNTIME to keep it alive after main() exits)');
+  return Module["asm"]["_increase_facets"].apply(null, arguments)
 };
 
 var _main = Module["_main"] = function() {
