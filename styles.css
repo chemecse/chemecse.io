@@ -60,6 +60,38 @@ p {
   color: var(--text-01);
 }
 
+button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  color: var(--color-base);
+  background-color: var(--color-02);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--color-02);
+  border-color: var(--color-02);
+  background-color: var(--color-base);
+}
+
 .selectable {
   color: var(--text-02);
 }
