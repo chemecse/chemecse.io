@@ -319,16 +319,7 @@ window.onload = () => {
   });
 
   copyButtonElement.addEventListener('click', () => {
-    // const range = document.createRange();
-    // const selection = window.getSelection();
-    // range.selectNodeContents(generatedEmojiTextElement);
-    // selection.removeAllRanges();
-    // selection.addRange(range);
     generatedEmojiTextElement.select();
     document.execCommand('copy');
-    // generatedEmojiTextElement.unselect();
-    // window.getSelection().removeAllRanges();
-
-    // selection.removeAllRanges();
   });
 };

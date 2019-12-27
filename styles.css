@@ -10,7 +10,7 @@
 
 /* base */
 
-h1, h2, h3, h4, h5, h6, p, a {
+h1, h2, h3, h4, h5, h6, p {
   margin: 0;
   padding: 0;
   border: 0;
@@ -22,13 +22,17 @@ h1, h2, h3, h4, h5, h6, p, a {
   vertical-align: baseline;
 }
 
+a {
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
 body {
   font-family: monospace;
   background-color: var(--color-base);
-}
-
-a, a:visited {
-  text-decoration: none;
 }
 
 h2 {
@@ -125,22 +129,12 @@ button {
   border-width: 2px
 }
 
-
 .selectable:hover {
   color: var(--text-02-highlight);
 }
 
-.post {
-  margin: 40px auto 60px auto;
-}
-
 .post-date {
   margin: 10px 5px 10px 0;
-  color: var(--text-01);
-}
-
-.post-link-date {
-  margin-right: 5px;
   color: var(--text-01);
 }
 
@@ -161,4 +155,8 @@ button {
   height: 10px;
   vertical-align: middle;
   border: 1px solid black;
+}
+
+.form-section {
+  margin-bottom: 8px;
 }
