@@ -1,3 +1,5 @@
+// TODO: provide a better mobile experience
+
 const emojiFromBinary = (binaryString, foregroundEmoji, backgroundEmoji) => {
   let emojiString = '';
   for (let i = 0, iLen = binaryString.length; i < iLen; ++i) {
