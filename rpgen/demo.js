@@ -1230,11 +1230,11 @@ function updateGlobalBufferViews() {
 
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 23104,
+    STACK_BASE = 23168,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 5265984,
-    DYNAMIC_BASE = 5265984,
-    DYNAMICTOP_PTR = 23072;
+    STACK_MAX = 5266048,
+    DYNAMIC_BASE = 5266048,
+    DYNAMICTOP_PTR = 23136;
 
 assert(STACK_BASE % 16 === 0, 'stack must start aligned');
 assert(DYNAMIC_BASE % 16 === 0, 'heap must start aligned');
@@ -1749,7 +1749,7 @@ function __sapp_js_unfocus_textfield(){ document.getElementById("_sokol_app_inpu
 
 
 
-// STATICTOP = STATIC_BASE + 22080;
+// STATICTOP = STATIC_BASE + 22144;
 /* global initializers */ /*__ATINIT__.push();*/
 
 
@@ -1760,7 +1760,7 @@ function __sapp_js_unfocus_textfield(){ document.getElementById("_sokol_app_inpu
 
 
 /* no memory initializer */
-var tempDoublePtr = 23088
+var tempDoublePtr = 23152
 assert(tempDoublePtr % 8 == 0);
 
 function copyTempFloat(ptr) { // functions, because inlining this code increases code size too much
