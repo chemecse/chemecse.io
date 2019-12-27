@@ -1,50 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>chemecse.io</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <div class="l-container">
-    <a href="./index.html">
+    <a href="../index.html">
       <h3 class="l-inline selectable">chemecse</h3>
     </a>
   </div>
   <div class="divider"></div>
   <div class="l-container">
-    <h4><strong>Lars Hamre</strong></h4>
-    <p>tech lead @ <a class="selectable" href="https://cbrebuild.com/nyc">cbrebuild</a></p>
-  </div>
-  <div class="divider"></div>
-  <div class="l-container">
-    <h4><strong>Projects</strong></h4>
-    <div>
-      <a class="text selectable" href="/emoji_canvas">
-        <h5 class="l-inline selectable">Emoji Canvas</h5>
-      </a>
-    </div>
-    <div>
-      <a class="text selectable" href="/rpgen">
-        <h5 class="l-inline selectable">Regular Polygon Mesh Generator</h5>
-      </a>
-    </div>
-    <div>
-      <a class="text selectable" href="/emoji_text_generator">
-        <h5 class="l-inline selectable">Emoji Text Generator</h5>
-      </a>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="l-container">
-    <h4><strong>Talks</strong></h4>
-    <div>
-      <div>
-        <span class="post-date">2017-11-27</span>
-        <h5 class="l-inline">HDR Rendering in Luma</h5>
+    <h2>Emoji Canvas</h2>
+    <div class="l-flex-vertical">
+      <div class="l-inline">
+        <canvas id="canvas" width="300" height="200" style="outline: solid"></canvas>
       </div>
-      <p>Guest lecture at UPenn for <a class="selectable" href="https://cis565-fall-2017.github.io/studentwork.html">CIS 565: GPU Programming and Architecture</a><a class="selectable" href="assets/UPennHDRRenderingTalk.pdf"> (slides)</a></p>
+      <div style="margin-top: 8px">
+        <button id="clear-button" class="btn" type="button">Clear</button>
+      </div>
+      <form id="input-form">
+        <div class="form-section">
+          <label for="foreground-emoji">Foreground emoji:</label>
+          <input type="text" id="foreground-emoji">
+        </div>
+        <div class="form-section">
+          <label for="background-emoji">Background emoji:</label>
+          <input type="text" id="background-emoji">
+        </div>
+        <button class="btn" type="submit">Generate!</button>
+      </form>
+      <div style="margin: 12px 0">
+        <div class="l-flex-vertical">
+          <label for="generated-emoji-text">Generated emoji text:</label>
+          <textarea id="generated-emoji-text" style="width: 416px; height: 366px" readonly /></textarea>
+        </div>
+        <div style="margin-top: 8px">
+          <button id="copy-text-button" class="btn" type="button">Copy generated emoji text!</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="divider"></div>
@@ -76,5 +73,6 @@
       </a>
     </div>
   </div>
+  <script type="text/javascript" src="./main.js"></script>
 </body>
 </html>

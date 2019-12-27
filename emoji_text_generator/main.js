@@ -307,7 +307,6 @@ window.onload = () => {
     backgroundEmojiElement.value
   );
 
-  console.log('inputFormElement', inputFormElement);
   inputFormElement.addEventListener('submit', (e) => {
     e.preventDefault();
     const generatedEmojiText = generateEmojiText(
