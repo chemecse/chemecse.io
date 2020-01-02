@@ -1,11 +1,8 @@
 :root {
   --color-base: #FFFFFF;
   --color-01: #000000;
-  --color-02: #F96B69;
+  --color-02: #DC2A2A;
   --color-03: #B82420;
-  --text-01: #000000;
-  --text-02: #F96B69;
-  --text-02-highlight: #B82420;
 }
 
 /* base */
@@ -38,24 +35,24 @@ body {
 h1 {
   font-size: 36px;
   line-height: 45px;
-  color: var(--text-01);
+  color: var(--color-01);
 }
 
 h2 {
   font-size: 20px;
   line-height: 25px;
-  color: var(--text-01);
+  color: var(--color-01);
 }
 
 h3 {
   font-size: 16px;
   line-height: 20px;
-  color: var(--text-01);
+  color: var(--color-01);
 }
 
 p {
   font-size: 14px;
-  color: var(--text-01);
+  color: var(--color-01);
 }
 
 button {
@@ -91,7 +88,7 @@ button {
 }
 
 .selectable {
-  color: var(--text-02);
+  color: var(--color-02);
 }
 
 /* layout */
@@ -124,12 +121,12 @@ button {
 }
 
 .selectable:hover {
-  color: var(--text-02-highlight);
+  color: var(--color-03);
 }
 
 .post-date {
   margin: 10px 5px 10px 0;
-  color: var(--text-01);
+  color: var(--color-01);
 }
 
 .contact {
