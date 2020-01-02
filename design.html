@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>chemecse.io - design</title>
   <meta charset="utf-8">
@@ -7,43 +7,48 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="l-container">
-    <a href="./index.html"><h3>chemecse</h3></a>
-  </div>
-  <div class="divider"></div>
-  <div class="l-container">
-    <div>
+  <header class="l-container">
+    <a href="/">
+      <h1 class="l-inline selectable">chemecse</h1>
+    </a>
+  </header>
+  <main>
+    <div class="divider"></div>
+    <section class="l-container">
       <div>
-        <span class="swatch" style="background-color: var(--color-base)"></span>
-        <span class="text">color-base</span>
+        <div>
+          <span class="swatch" style="background-color: var(--color-base)"></span>
+          <span class="text">color-base</span>
+        </div>
+        <div>
+          <span class="swatch" style="background-color: var(--color-01)"></span>
+          <span class="text">color-01</span>
+        </div>
+        <div>
+          <span class="swatch" style="background-color: var(--color-02)"></span>
+          <span class="text">color-02</span>
+        </div>
+        <div>
+          <span class="swatch" style="background-color: var(--color-03)"></span>
+          <span class="text">color-03</span>
+        </div>
       </div>
-      <div>
-        <span class="swatch" style="background-color: var(--color-01)"></span>
-        <span class="text">color-01</span>
-      </div>
-      <div>
-        <span class="swatch" style="background-color: var(--color-02)"></span>
-        <span class="text">color-02</span>
-      </div>
-      <div>
-        <span class="swatch" style="background-color: var(--color-03)"></span>
-        <span class="text">color-03</span>
-      </div>
-    </div>
-  </div>
-  <div class="divider"></div>
-  <div class="l-container">
-    <h2>h2 heading-large</h2>
-    <h3>h3 heading-medium</h3>
-    <h4>h4 heading-small</h4>
-    <h4 class="selectable">h4 heading-small selectable</h4>
-    <h5 class="heading-tiny">heading-tiny</h5>
-    <p>p text</p>
-    <p class="selectable">p text selectable</p>
-  </div>
-  <div class="divider"></div>
-  <div class="l-container">
-    <h5>lars hamre</h5>
+    </section>
+    <div class="divider"></div>
+    <section class="l-container">
+      <h1>h1 heading</h1>
+      <h1 class="selectable">h1 heading selectable</h1>
+      <h2>h2 heading</h2>
+      <h2 class="selectable">h2 heading selectable</h2>
+      <h3>h3 heading-small</h3>
+      <h3 class="selectable">h3 heading selectable</h3>
+      <p>p text</p>
+      <p class="selectable">p text selectable</p>
+    </section>
+    <div class="divider"></div>
+  </main>
+  <footer class="l-container">
+    <h3>lars hamre</h3>
     <div class="contact">
       <a href="mailto:chemecse@gmail.com"><p class="selectable">chemecse@gmail.com</p></a>
     </div>
@@ -67,6 +72,6 @@
         <p class="l-inline selectable">chemecse</p>
       </a>
     </div>
-  </div>
+  </footer>
 </body>
 </html>

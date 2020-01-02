@@ -35,25 +35,19 @@ body {
   background-color: var(--color-base);
 }
 
-h2 {
-  font-size: 52px;
-  line-height: 65px;
-  color: var(--text-01);
-}
-
-h3 {
+h1 {
   font-size: 36px;
   line-height: 45px;
   color: var(--text-01);
 }
 
-h4 {
+h2 {
   font-size: 20px;
   line-height: 25px;
   color: var(--text-01);
 }
 
-h5 {
+h3 {
   font-size: 16px;
   line-height: 20px;
   color: var(--text-01);
