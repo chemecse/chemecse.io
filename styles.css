@@ -55,6 +55,15 @@ p {
   color: var(--color-01);
 }
 
+.text {
+  margin: 1em 0
+}
+
+.title {
+  font-size: 16px;
+  line-height: 20px;
+}
+
 button {
   padding: 0;
   border: none;
@@ -91,6 +100,10 @@ button {
   color: var(--color-02);
 }
 
+.selectable:hover {
+  color: var(--color-03);
+}
+
 .visually-hidden {
   position: absolute !important;
   clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
@@ -100,6 +113,18 @@ button {
   height: 1px !important; 
   width: 1px !important; 
   overflow: hidden;
+}
+
+pre {
+  margin: 0;
+}
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 0 20px;
+  overflow-x: auto;
 }
 
 /* layout */
@@ -129,10 +154,6 @@ button {
 .divider {
   border-bottom: dashed var(--color-02);
   border-width: 2px
-}
-
-.selectable:hover {
-  color: var(--color-03);
 }
 
 .post-date {
