@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>chemecse.io - emoji text generator</title>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content="Emoji Text Generator">
+  <meta property="og:description" content="Emoji Text Generator allows you to specify text, a foreground and background emoji, and will then automatically convert your text into an emoji representation.">
+  <meta property="og:image" content="https://chemecse.io/emoji_text_generator/example.png">
+  <!--include('snippets/head_boilerplate.html')-->
+</head>
+<body>
+  <header class="l-container">
+    <a href="/">
+      <h1 class="l-inline selectable">chemecse</h1>
+    </a>
+  </header>
+  <main>
+    <div class="divider"></div>
+    <section class="l-container">
+      <h2>Emoji Text Generator</h2>
+      <div class="l-flex-vertical">
+        <form id="input-form">
+          <div class="form-section">
+            <label for="foreground-emoji">Foreground emoji:</label>
+            <input type="text" id="foreground-emoji">
+          </div>
+          <div class="form-section">
+            <label for="background-emoji">Background emoji:</label>
+            <input type="text" id="background-emoji">
+          </div>
+          <div class="form-section">
+            <label for="input-text">Text:</label>
+            <input type="text" id="input-text">
+          </div>
+          <button class="btn" type="submit">Generate!</button>
+        </form>
+        <div style="margin: 12px 0">
+          <div class="l-flex-vertical">
+            <label for="generated-emoji-text">Generated emoji text:</label>
+            <textarea id="generated-emoji-text" style="width: 600px; height: 152px" readonly /></textarea>
+          </div>
+          <div style="margin-top: 8px">
+            <button id="copy-text-button" class="btn" type="button">Copy generated emoji text!</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+  </main>
+  <!--include('snippets/footer.html')-->
+  <script type="text/javascript" src="./main.js"></script>
+</body>
+</html>
