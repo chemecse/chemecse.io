@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>chemecse.io - Google forms slackbot</title>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:title" content="Google forms slackbot">
+  <meta property="og:type" content="article">
+  <meta property="og:description" content="How to use google script to create a slackbot for forms">
+  <!--include('snippets/head_boilerplate.html')-->
+</head>
+<body>
+  <header class="l-container">
+    <a href="/">
+      <h1 class="l-inline selectable">chemecse</h1>
+    </a>
+  </header>
+  <main>
+    <div class="divider"></div>
+    <section class="l-container">
+      <h2>Google forms slackbot</h2>
+      <p class="text">2020-02-22</p>
+      <p class="text">The engineering team at CBRE Build meets once a week at a "guild sync".</p>
+      <p class="text">This is a venue for eng management to communicate guild-wide updates, but primarily it is a platform for engineers to present things they've learned, recap conferences they've attended, or review an interesting bug they've solved.</p>
+      <p class="text">We like to collect anonymous feedback on each of these presentations and provide that to the presenters. The collected feedback is in the form of an <a href="https://en.wikipedia.org/wiki/Net_Promoter">NPS</a> ("was this a good use of my time?" ranked 1-10) and a free-form text section.</p>
+      <p class="text">For a while we would designate the guild sync facilitator to manually create these forms and then post them to slack for people to respond to. We received positive feedback on the feedback forms from the presentors, but it was frustrating to manually create a form for each presentation (usually 2-4 presentations per guild sync).</p>
+
+      <p class="text">During a hackathon earlier this year I set out to automate the form creation process using google script and the slack api integration.</p>
+
+      <p class="text">Google script for generating a form:</p>
+      <pre><code>
+/**
+ * Creates Google Forms for Guild Sync Feedback
+ */
+function createForm(talks) {
+
+  /*var talks = [
+    { name: 'Presenter1', topic: 'a11y', email: 'presenter1@cbrebuild.com' },
+    { name: 'Presenter2', topic: 'sick gfx', email: 'presenter2@cbrebuild.com' },
+    { name: 'Presenter3', topic: 'site iq in rust', email: 'presenter3@cbrebuild.com' }
+  ];*/
+
+  var date = new Date();
+  var dateStr = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+
+  var slackMessage = 'Please provide feedback for ' + dateStr + ' guild sync presentations!\n';
+
+  for (var i = 0, len = talks.length; i < len; i++) {
+    var name = talks[i].name;
+    var topic = talks[i].topic;
+
+    var title = 'Guild Sync ' + dateStr + ' - ' + name;
+    var description = 'Feedback for guild sync.\nPresenter: ' + name + '\nTopic: ' + topic + '\n';
+
+    var form = FormApp.create(title)
+      .setTitle(title)
+      .setDescription(description)
+      .setLimitOneResponsePerUser(true);
+
+    form.addScaleItem()
+      .setTitle('Score')
+      .setBounds(1, 10)
+      .setLabels('This was not a good use of my time', 'This was a good use of my time')
+      .setRequired(true);
+
+    form.addParagraphTextItem()
+      .setTitle('Feedback')
+      .setHelpText('Feedback can consist of praise, constructive criticism, or desire to learn more on the topic!')
+      .setRequired(false);
+
+    // add edit permissions for judy, michael, and the presenter
+    var editors = ['manager1@cbrebuild.com', 'manager2@cbrebuild.com', talks[i].email];
+    form.addEditors(editors);
+
+    // set judy as file owner
+    var file = DriveApp.getFileById(form.getId());
+    file.setOwner('manager1@cbrebuild.com');
+
+    // remove edit permissions for script creator (so anyone can generate the feedback forms)
+    var activeUserEmail = Session.getActiveUser().getEmail();
+    if (activeUserEmail) {
+      form.removeEditor(Session.getActiveUser().getEmail());
+    }
+
+    slackMessage += name + ' - ' + topic + ' - ' + form.shortenFormUrl(form.getPublishedUrl()) + '\n';
+  }
+
+  Logger.log('Slack message:\n' + slackMessage);
+
+  var slackPayload = {
+    channel: '#eng-nyc',
+    username: 'guild sync robot',
+    text: slackMessage,
+    icon_emoji: ':blob-raisedhands:'
+  };
+
+  // post message to slack
+  UrlFetchApp.fetch(
+  'https://hooks.slack.com/services/<your hook here>',
+    {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify(slackPayload)
+    }
+  );
+
+  return slackMessage;
+}
+
+function talkFromStr(talkStr) {
+  var talkStrSplit = talkStr.split(',');
+  var name = talkStrSplit[0].trim();
+  var topic = talkStrSplit[1].trim();
+  return { name: name, topic: topic, email: name.trim().toLowerCase() + '@cbrebuild.com' };
+}
+
+function doPost(e) {
+  if (e && e.parameter && e.parameter.text) {
+    var postStr = e.parameter.text; // "presenter1,A11Y Snippet;presenter2,Cool GFX Demo"
+    var talks = postStr.split(';').map(talkFromStr);
+    resText = createForm(talks);
+  }
+  return ContentService.createTextOutput('Response text: ' + resText);
+}
+      </code></pre>
+
+      <p class="text">TODO: summary of what we used it for or what it could be used for</p>
+      <p class="text">TODO: summary of caveats and ways to extend it</p>
+    </section>
+    <div class="divider"></div>
+  </main>
+  <!--include('snippets/footer.html')-->
+</body>
+</html>

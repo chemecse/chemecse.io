@@ -46,4 +46,5 @@ assemble('./design/index.template.html');
 assemble('./emoji_text_generator/index.template.html');
 assemble('./emoji_canvas/index.template.html');
 assemble('./posts/2020-02-01-issues-running-headless-chrome-on-heroku/index.template.html');
+assemble('./posts/2020-02-22-google-forms-slackbot/index.template.html');
 
