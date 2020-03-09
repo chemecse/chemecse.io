@@ -43,9 +43,12 @@
           <div class="l-flex-vertical">
             <label for="generated-emoji-text">Generated emoji text:</label>
             <textarea id="generated-emoji-text" style="width: 600px; height: 152px" readonly /></textarea>
+            <label for="generated-emoji-image" style="margin-top: 8px">Generated emoji image:</label>
+            <img id="generated-emoji-image"></img>
           </div>
           <div style="margin-top: 8px">
-            <button id="copy-text-button" class="btn" type="button">Copy generated emoji text!</button>
+            <button id="copy-text-button" class="btn" type="button">Copy text!</button>
+            <a id="download-image-link" class="text selectable" download="generated-emoji-image.png">Download image!</button>
           </div>
         </div>
       </div>

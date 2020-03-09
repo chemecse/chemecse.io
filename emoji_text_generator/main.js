@@ -1,6 +1,6 @@
-var FONT_HEIGHT = 5;
+const FONT_HEIGHT = 5;
 
-var FONT = {
+const FONT = {
   'a': [
     '0110',
     '1001',
@@ -290,13 +290,35 @@ const generateEmojiText = (inputText, foregroundEmoji, backgroundEmoji) => {
   return `${emptyLine}\n${text}${emptyLine}`;
 };
 
+const generateEmojiImage = (generatedEmojiText) => {
+  const imageElement = document.getElementById('generated-emoji-image');
+  const downloadImageLinkElement = document.getElementById('download-image-link');
+
+  const emojiLines = generatedEmojiText.split('\n');
+
+  const canvas = document.createElement('canvas');
+  imageElement.width = canvas.width = emojiLines[0].length * 8;
+  imageElement.height = canvas.height = emojiLines.length * 18;
+
+  const ctx = canvas.getContext('2d');
+  ctx.font = '12px monospace';
+  emojiLines.forEach((line, idx) => {
+    ctx.fillText(line, 0, 12 + idx * 18);
+  });
+
+  const dataUrl = canvas.toDataURL();
+  downloadImageLinkElement.href = dataUrl;
+  imageElement.src = dataUrl;
+};
+
 window.onload = () => {
   const foregroundEmojiElement = document.getElementById('foreground-emoji');
   const backgroundEmojiElement = document.getElementById('background-emoji');
   const inputTextElement = document.getElementById('input-text');
   const generatedEmojiTextElement = document.getElementById('generated-emoji-text');
   const inputFormElement = document.getElementById('input-form');
-  const copyButtonElement = document.getElementById('copy-text-button');
+  const imageElement = document.getElementById('generated-emoji-image');
+  const copyTextButtonElement = document.getElementById('copy-text-button');
 
   foregroundEmojiElement.value = '🎁';
   backgroundEmojiElement.value = '🎄';
@@ -306,6 +328,7 @@ window.onload = () => {
     foregroundEmojiElement.value,
     backgroundEmojiElement.value
   );
+  generateEmojiImage(generatedEmojiTextElement.value);
 
   inputFormElement.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -315,9 +338,10 @@ window.onload = () => {
       backgroundEmojiElement.value
     );
     generatedEmojiTextElement.value = generatedEmojiText;
+    generateEmojiImage(generatedEmojiText);
   });
 
-  copyButtonElement.addEventListener('click', () => {
+  copyTextButtonElement.addEventListener('click', () => {
     generatedEmojiTextElement.select();
     document.execCommand('copy');
   });
