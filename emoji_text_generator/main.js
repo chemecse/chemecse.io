@@ -259,8 +259,23 @@ const FONT = {
     '1',
     '0',
     '1'
+  ],
+  ' ': [
+    '0',
+    '0',
+    '0',
+    '0',
+    '0'
   ]
 };
+
+const presets = [
+  { text: 'meow', fg: '🎹', bg: '🐱' },
+  { text: 'rats', fg: '🐀', bg: '🧀' },
+  { text: 'xmas', fg: '🎁', bg: '🎄' }
+];
+
+const feelingLuckyPreset = { text: 'lucky', fg: '☘️', bg: '🌟' };
 
 const emojiFromBinary = (binaryString, foregroundEmoji, backgroundEmoji) => {
   let emojiString = '';
@@ -290,10 +305,7 @@ const generateEmojiText = (inputText, foregroundEmoji, backgroundEmoji) => {
   return `${emptyLine}\n${text}${emptyLine}`;
 };
 
-const generateEmojiImage = (generatedEmojiText) => {
-  const imageElement = document.getElementById('generated-emoji-image');
-  const downloadImageLinkElement = document.getElementById('download-image-link');
-
+const generateEmojiImage = (generatedEmojiText, imageElement, downloadImageLinkElement) => {
   const emojiLines = generatedEmojiText.split('\n');
 
   const canvas = document.createElement('canvas');
@@ -315,30 +327,40 @@ window.onload = () => {
   const foregroundEmojiElement = document.getElementById('foreground-emoji');
   const backgroundEmojiElement = document.getElementById('background-emoji');
   const inputTextElement = document.getElementById('input-text');
+  const feelingLuckyButtonElement = document.getElementById('feeling-luck-button');
   const generatedEmojiTextElement = document.getElementById('generated-emoji-text');
   const inputFormElement = document.getElementById('input-form');
   const imageElement = document.getElementById('generated-emoji-image');
   const copyTextButtonElement = document.getElementById('copy-text-button');
+  const downloadImageLinkElement = document.getElementById('download-image-link');
 
-  foregroundEmojiElement.value = '🎁';
-  backgroundEmojiElement.value = '🎄';
-  inputTextElement.value = 'xmas';
-  generatedEmojiTextElement.value = generateEmojiText(
-    inputTextElement.value,
-    foregroundEmojiElement.value,
-    backgroundEmojiElement.value
-  );
-  generateEmojiImage(generatedEmojiTextElement.value);
-
-  inputFormElement.addEventListener('submit', (e) => {
-    e.preventDefault();
+  const generate = () => {
     const generatedEmojiText = generateEmojiText(
       inputTextElement.value,
       foregroundEmojiElement.value,
       backgroundEmojiElement.value
     );
     generatedEmojiTextElement.value = generatedEmojiText;
-    generateEmojiImage(generatedEmojiText);
+    generateEmojiImage(generatedEmojiText, imageElement, downloadImageLinkElement);
+  }
+
+  const set = (preset) => {
+    foregroundEmojiElement.value = preset.fg;
+    backgroundEmojiElement.value = preset.bg;
+    inputTextElement.value = preset.text;
+    generate();
+  };
+
+  const presetIdx = Math.floor(Math.random() * presets.length);
+  set(presets[presetIdx]);
+
+  inputFormElement.addEventListener('submit', (e) => {
+    e.preventDefault();
+    generate();
+  });
+
+  feelingLuckyButtonElement.addEventListener('click', () => {
+    set(feelingLuckyPreset);
   });
 
   copyTextButtonElement.addEventListener('click', () => {

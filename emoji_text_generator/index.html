@@ -24,8 +24,9 @@
     <section class="l-container">
       <h2>Emoji Text Generator</h2>
       <div class="l-flex-vertical">
-        <form id="input-form">
-          <div class="form-section">
+        <form id="input-form" style="margin-top: 12px">
+          <p><i> * Search for emoji on <a class="text selectable" href="https://emojipedia.org/" target="_blank">Emojipedia</a>.</i></p>
+          <div class="form-section" style="margin-top: 8px">
             <label for="foreground-emoji">Foreground emoji:</label>
             <input type="text" id="foreground-emoji">
           </div>
@@ -38,6 +39,7 @@
             <input type="text" id="input-text">
           </div>
           <button class="btn" type="submit">Generate!</button>
+          <button id="feeling-luck-button" class="btn" type="button">I'm Feeling Lucky</button>
         </form>
         <div style="margin: 12px 0">
           <div class="l-flex-vertical">
