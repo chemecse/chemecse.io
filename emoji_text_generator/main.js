@@ -327,6 +327,7 @@ window.onload = () => {
   const foregroundEmojiElement = document.getElementById('foreground-emoji');
   const backgroundEmojiElement = document.getElementById('background-emoji');
   const inputTextElement = document.getElementById('input-text');
+  const swapEmojiButtonElement = document.getElementById('swap-emoji-button');
   const feelingLuckyButtonElement = document.getElementById('feeling-luck-button');
   const generatedEmojiTextElement = document.getElementById('generated-emoji-text');
   const inputFormElement = document.getElementById('input-form');
@@ -356,6 +357,14 @@ window.onload = () => {
 
   inputFormElement.addEventListener('submit', (e) => {
     e.preventDefault();
+    generate();
+  });
+
+  swapEmojiButtonElement.addEventListener('click', () => {
+    const foregroundEmoji = foregroundEmojiElement.value;
+    const backgroundEmoji = backgroundEmojiElement.value;
+    foregroundEmojiElement.value = backgroundEmoji;
+    backgroundEmojiElement.value = foregroundEmoji;
     generate();
   });
 
