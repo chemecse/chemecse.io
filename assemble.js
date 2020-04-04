@@ -43,7 +43,7 @@ const assemble = (filename) => {
 
 assemble('./index.template.html');
 assemble('./design/index.template.html');
-assemble('./emoji_text_generator/index.template.html');
+assemble('./text2emoji/index.template.html');
 assemble('./emoji_canvas/index.template.html');
 assemble('./posts/2020-02-01-issues-running-headless-chrome-on-heroku/index.template.html');
 
