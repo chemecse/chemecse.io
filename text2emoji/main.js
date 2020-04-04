@@ -272,7 +272,8 @@ const FONT = {
 const presets = [
   { text: 'meow', fg: '🎹', bg: '🐱' },
   { text: 'rats', fg: '🐀', bg: '🧀' },
-  { text: 'xmas', fg: '🎁', bg: '🎄' }
+  { text: 'xmas', fg: '🎁', bg: '🎄' },
+  { text: 'hey!', fg: '🦊', bg: '🌳' }
 ];
 
 const feelingLuckyPreset = { text: 'lucky', fg: '☘️', bg: '🌟' };
