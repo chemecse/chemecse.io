@@ -55,6 +55,10 @@ p {
   color: var(--color-01);
 }
 
+li {
+  margin: 10px 0;
+}
+
 .text {
   margin: 1em 0
 }
@@ -110,8 +114,8 @@ button {
   clip: rect(1px, 1px, 1px, 1px);
   padding: 0 !important;
   border: 0 !important;
-  height: 1px !important; 
-  width: 1px !important; 
+  height: 1px !important;
+  width: 1px !important;
   overflow: hidden;
 }
 
@@ -162,7 +166,7 @@ pre code {
 }
 
 .contact {
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 .icon>svg {
