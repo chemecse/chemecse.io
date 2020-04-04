@@ -46,4 +46,5 @@ assemble('./design/index.template.html');
 assemble('./text2emoji/index.template.html');
 assemble('./drawmoji/index.template.html');
 assemble('./posts/2020-02-01-issues-running-headless-chrome-on-heroku/index.template.html');
+assemble('./404.template.html');
 
