@@ -305,7 +305,7 @@ const generateEmojiText = (inputText, foregroundEmoji, backgroundEmoji) => {
   return `${emptyLine}\n${text}${emptyLine}`;
 };
 
-const generateEmojiImage = (generatedEmojiText, imageElement, downloadImageLinkElement) => {
+const generateEmojiImage = (inputText, generatedEmojiText, imageElement, downloadImageLinkElement) => {
   const emojiLines = generatedEmojiText.split('\n');
 
   const canvas = document.createElement('canvas');
@@ -321,6 +321,7 @@ const generateEmojiImage = (generatedEmojiText, imageElement, downloadImageLinkE
   const dataUrl = canvas.toDataURL();
   downloadImageLinkElement.href = dataUrl;
   imageElement.src = dataUrl;
+  imageElement.alt = `The phrase "${inputText}" written using emojis`;
 };
 
 window.onload = () => {
@@ -336,13 +337,14 @@ window.onload = () => {
   const downloadImageLinkElement = document.getElementById('download-image-link');
 
   const generate = () => {
+    const inputText = inputTextElement.value;
     const generatedEmojiText = generateEmojiText(
-      inputTextElement.value,
+      inputText,
       foregroundEmojiElement.value,
       backgroundEmojiElement.value
     );
     generatedEmojiTextElement.value = generatedEmojiText;
-    generateEmojiImage(generatedEmojiText, imageElement, downloadImageLinkElement);
+    generateEmojiImage(inputText, generatedEmojiText, imageElement, downloadImageLinkElement);
   }
 
   const set = (preset) => {
