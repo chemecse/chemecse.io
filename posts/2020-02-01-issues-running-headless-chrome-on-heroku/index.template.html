@@ -57,6 +57,8 @@ tmpfs           1.9G     0  1.9G   0% /proc/scsi
       <p class="text">Looking at the results shows that only the private space runtime mounts shm on <a href="https://www.cyberciti.biz/tips/what-is-devshm-and-its-practical-usage.html">/dev/shm</a>. Some searching on the internet <a href="https://developers.google.com/web/tools/puppeteer/troubleshooting#tips">reveals</a> that allocating too little shared memory space to /dev/shm will cause chrome to crash when rendering large pages.</p>
 
       <p class="text">The simple fix is to use the `--disable-dev-shm-usage` flag which forces headless chrome to use /tmp instead of /dev/shm.</p>
+      <p class="text"><em>Update (2020-05-22):</em> There was a <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1085829">regression</a> in Chrome v83 which reintroduced this issue.</p>
+      <p class="text"><em>Update (2020-06-02):</em> The regression was <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1085829#c15">fixed</a>.</p>
     </section>
     <div class="divider"></div>
   </main>
