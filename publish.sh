@@ -4,7 +4,7 @@ set -eu
 
 dirname="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 views_dir="$dirname/views"
-www_dir="$dirname/www"
+www_dir="$dirname/docs"
 
 pushd $views_dir
 
