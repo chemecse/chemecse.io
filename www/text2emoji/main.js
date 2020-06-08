@@ -315,6 +315,7 @@ const generateEmojiImage = (inputText, generatedEmojiText, imageElement, downloa
 
   const ctx = canvas.getContext('2d');
   ctx.font = '12px monospace';
+  ctx.imageSmoothingEnabled = false;
   emojiLines.forEach((line, idx) => {
     ctx.fillText(line, 0, 12 + idx * 18);
   });

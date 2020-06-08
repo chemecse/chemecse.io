@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs', {
+      tabTitle: 'chemecse.io | design',
+      title: 'Design',
+      description: `Design system for chemecse.io`,
+      imageUrl: null
+    })
+  %>
+  <body>
+    <%- include('./partials/header.ejs') %>
+    <main>
+      <div class="divider"></div>
+      <section class="l-container">
+        <div>
+          <div>
+            <span class="swatch" style="background-color: var(--color-base)"></span>
+            <span class="text">color-base</span>
+          </div>
+          <div>
+            <span class="swatch" style="background-color: var(--color-01)"></span>
+            <span class="text">color-01</span>
+          </div>
+          <div>
+            <span class="swatch" style="background-color: var(--color-02)"></span>
+            <span class="text">color-02</span>
+          </div>
+          <div>
+            <span class="swatch" style="background-color: var(--color-03)"></span>
+            <span class="text">color-03</span>
+          </div>
+        </div>
+      </section>
+      <div class="divider"></div>
+      <section class="l-container">
+        <h1>h1 heading</h1>
+        <h1 class="selectable">h1 heading selectable</h1>
+        <h2>h2 heading</h2>
+        <h2 class="selectable">h2 heading selectable</h2>
+        <h3>h3 heading-small</h3>
+        <h3 class="selectable">h3 heading selectable</h3>
+        <p>p text</p>
+        <p class="selectable">p text selectable</p>
+      </section>
+      <div class="divider"></div>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>

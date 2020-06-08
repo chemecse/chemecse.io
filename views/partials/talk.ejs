@@ -1,0 +1,10 @@
+<li>
+  <a class="nav-link" href="<%= link %>">
+      <span class="title selectable"><%= title %></span>
+    </a>
+  <ul>
+    <% presentations.forEach((presentation) => { %>
+      <%- include('./item.ejs', presentation); %>
+    <% }) %>
+  </ul>
+</li>

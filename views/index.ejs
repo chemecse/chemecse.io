@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs', {
+      tabTitle: 'chemecse.io',
+      title: 'Lars Hamre',
+      description: `I'm an engineer and sometimes I make things. If you're interested in learning more, this is a good place to start.`,
+      imageUrl: '/assets/me.png'
+    });
+  %>
+  <body>
+    <%- include('./partials/header.ejs'); %>
+    <main>
+      <div class="divider"></div>
+      <section class="l-container" aria-labelledby="lars-section-header">
+        <h2 id="lars-section-header"><strong>Lars Hamre</strong></h2>
+        <p>tech lead @ <a class="nav-link" href="https://cbrebuild.com/nyc"><span class="selectable">cbrebuild</span></a></p>
+      </section>
+      <div class="divider"></div>
+      <section class="l-container" aria-labelledby="posts-section-header">
+        <h2 id="posts-section-header"><strong>Posts</strong></h2>
+        <%
+          const posts = [
+            {
+              date: '2020-02-01',
+              link: '/posts/2020-02-01-issues-running-headless-chrome-on-heroku/',
+              title: 'Issues running headless chrome on heroku'
+            }
+          ];
+        %>
+        <ul>
+          <% posts.forEach((post) => { %>
+            <%- include('./partials/item.ejs', post); %>
+          <% }); %>
+        </ul>
+      </section>
+      <div class="divider"></div>
+      <section class="l-container" aria-labelledby="project-section-header">
+        <h2 id="project-section-header"><strong>Projects</strong></h2>
+        <%
+          const projects = [
+            {
+              date: null,
+              link: '/rpgen',
+              title: 'rpgen - regular polygon mesh generator'
+            },
+            {
+              date: null,
+              link: '/text2emoji',
+              title: 'text2emoji - emoji text generator'
+            },
+            {
+              date: null,
+              link: '/drawmoji',
+              title: 'drawmoji - emoji canvas'
+            }
+          ];
+        %>
+        <ul>
+          <% projects.forEach((project) => { %>
+            <%- include('./partials/item.ejs', project); %>
+          <% }); %>
+        </ul>
+      </section>
+      <div class="divider"></div>
+      <section class="l-container" aria-labelledby="talk-section-header">
+        <h2 id="talk-section-header"><strong>Talks</strong></h2>
+        <%
+          const talks = [
+            {
+              link: '/assets/UPennHDRRenderingTalk.pdf',
+              title: 'HDR Rendering in Luma',
+              presentations: [
+                {
+                  date: '2017-09-20',
+                  link: 'https://www.meetup.com/Khronos-NY-Chapter/events/242447651/',
+                  title: 'NYC WebGL meetup'
+                },
+                {
+                  date: '2017-11-27',
+                  link: 'https://cis565-fall-2017.github.io/studentwork.html',
+                  title: 'UPenn CIS 565: GPU Programming and Architecture'
+                }
+              ]
+            }
+          ];
+        %>
+        <ul>
+          <% talks.forEach((talk) => { %>
+            <%- include('./partials/talk.ejs', talk); %>
+          <% }); %>
+        </ul>
+      </section>
+      <div class="divider"></div>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>

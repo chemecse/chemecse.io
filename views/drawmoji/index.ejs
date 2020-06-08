@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs', {
+      tabTitle: 'chemecse.io | drawmoji',
+      title: 'drawmoji',
+      description: `drawmoji allows you to draw on a canvas, specify a foreground and background emoji, and will then automatically convert your drawing into an emoji representation.`,
+      imageUrl: '/drawmoji/example.png'
+    });
+  %>
+  <body>
+    <%- include('./partials/header.ejs'); %>
+    <main>
+      <div class="divider"></div>
+      <section class="l-container">
+        <h2>drawmoji</h2>
+        <div class="l-flex-vertical">
+          <div class="l-inline">
+            <canvas id="canvas" width="300" height="200" style="outline: solid; margin-top: 4px" aria-label="drawing canvas"></canvas>
+          </div>
+          <div style="margin-top: 8px">
+            <button id="clear-button" class="btn" type="button">Clear</button>
+          </div>
+          <form id="input-form">
+            <div class="form-section">
+              <label for="foreground-emoji">Foreground emoji:</label>
+              <input type="text" id="foreground-emoji">
+            </div>
+            <div class="form-section">
+              <label for="background-emoji">Background emoji:</label>
+              <input type="text" id="background-emoji">
+            </div>
+            <button class="btn" type="submit">Generate!</button>
+            <button id="swap-emoji-button" class="btn" type="button">Swap & Generate</button>
+          </form>
+          <div style="margin: 12px 0">
+            <div class="l-flex-vertical">
+              <label for="generated-emoji-text">Generated emoji text:</label>
+              <textarea id="generated-emoji-text" style="width: 416px; height: 366px" readonly /></textarea>
+            </div>
+            <div style="margin-top: 8px">
+              <button id="copy-text-button" class="btn" type="button">Copy generated emoji text!</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="divider"></div>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
+    <script type="text/javascript" src="./main.js"></script>
+  </body>
+</html>

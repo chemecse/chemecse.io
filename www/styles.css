@@ -68,6 +68,10 @@ li {
   line-height: 20px;
 }
 
+.nav-link {
+  text-decoration: none;
+}
+
 button {
   padding: 0;
   border: none;

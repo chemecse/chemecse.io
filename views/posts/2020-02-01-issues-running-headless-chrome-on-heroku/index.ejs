@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs', {
+      tabTitle: 'chemecse.io | Issues running headless chrome on heroku',
+      title: 'Issues running headless chrome on heroku',
+      description: 'TL;DR use the `--disable-dev-shm-usage` flag when running headless chrome on the heroku private spaces runtime.',
+      imageUrl: null
+    });
+  %>
+  <body>
+    <%- include('./partials/header.ejs'); %>
+    <main>
+      <div class="divider"></div>
+      <section class="l-container">
+        <h2>Issues running headless chrome on heroku</h2>
+        <p class="text">2020-02-01</p>
+        <p class="text">TL;DR use the `--disable-dev-shm-usage` flag when running headless chrome on the heroku private spaces runtime.</p>
+        <p class="text">At CBRE Build we run headless chrome on heroku worker dynos to generate PDFs for a production application. When attempting to generate larger PDFs (high page and image count) we would encounter the following error:</p>
+
+        <pre><code>
+  app[worker.1]: [0411/255147.243199:ERROR:crash_handler_host_linux.cc(433)] Failed to write crash dump for pid 86
+        </code></pre>
+
+        <p class="text">This error was not reproducible in development or staging environments, only production. After some <strike>headbanging</strike> investigating, it turns out that staging and production environments use different heroku runtimes.</p>
+
+        <p class="text">Heroku currently offers 2 runtimes: <a href="https://devcenter.heroku.com/articles/dyno-runtime#common-runtime">common</a> and <a href="https://devcenter.heroku.com/articles/private-spaces">private spaces</a>. The main difference between the runtimes is that common is multi-tenant and private spaces are single tenant. We use the common runtime for staging and the private spaces runtime for production. Since the error message was about writing to the file system, running `df -h` on each runtime was the next step:</p>
+
+        <p class="text">common runtime (staging environment)</p>
+        <pre><code>
+  $ df -h
+  Filesystem              Size  Used Avail Use% Mounted on
+  /dev/loop6              2.3G  507M  1.8G  23% /
+  /dev/mapper/evg0-evol0  376G   84G  273G  24% /app
+  none                    1.0M     0  1.0M   0% /dev
+  udev                     30G   12K   30G   1% /proc/kcore
+  none                     64M     0   64M   0% /dev/shm
+  tmpfs                   6.1G  396K  6.0G   1% /etc/resolv.conf
+        </code></pre>
+        <p class="text">private space (production environment)</p>
+        <pre><code>
+  $ df -h
+  Filesystem      Size  Used Avail Use% Mounted on
+  overlay          65G  1.3G   61G   2% /
+  tmpfs            64M     0   64M   0% /dev
+  shm              64M     0   64M   0% /dev/shm
+  tmpfs           1.9G     0  1.9G   0% /sys/fs/cgroup
+  /dev/xvdh        65G  1.3G   61G   2% /etc/group
+  /dev/xvda1       20G   18G  1.6G  92% /sbin/dyno-init
+  tmpfs           1.9G     0  1.9G   0% /proc/scsi
+        </code></pre>
+
+        <p class="text">Looking at the results shows that only the private space runtime mounts shm on <a href="https://www.cyberciti.biz/tips/what-is-devshm-and-its-practical-usage.html">/dev/shm</a>. Some searching on the internet <a href="https://developers.google.com/web/tools/puppeteer/troubleshooting#tips">reveals</a> that allocating too little shared memory space to /dev/shm will cause chrome to crash when rendering large pages.</p>
+
+        <p class="text">The simple fix is to use the `--disable-dev-shm-usage` flag which forces headless chrome to use /tmp instead of /dev/shm.</p>
+        <p class="text"><em>Update (2020-05-22):</em> There was a <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1085829">regression</a> in Chrome v83 which reintroduced this issue.</p>
+        <p class="text"><em>Update (2020-06-02):</em> The regression was <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1085829#c15">fixed</a>.</p>
+      </section>
+      <div class="divider"></div>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>

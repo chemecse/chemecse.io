@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>chemecse.io | text2emoji</title>
-  <meta name="twitter:card" content="summary" />
-  <meta property="og:title" content="text2emoji">
-  <meta property="og:description" content="text2emoji allows you to specify text, a foreground and background emoji, and will then automatically convert your text into an emoji representation. The emoji represenation is available as copiable unicode text or a downloadable image.">
-  <meta property="og:image" content="https://chemecse.io/text2emoji/example.png">
-  <!--include('snippets/head_boilerplate.html')-->
-</head>
-<body>
-  <header class="l-container">
-    <a href="/">
-      <h1 class="l-inline selectable">chemecse</h1>
-    </a>
-  </header>
-  <main>
-    <div class="divider"></div>
+  <%- include('./partials/head.ejs', {
+      tabTitle: 'chemecse.io | text2emoji',
+      title: 'text2emoji',
+      description: `text2emoji allows you to specify text, a foreground and background emoji, and will then automatically convert your text into an emoji representation. The emoji represenation is available as copiable unicode text or a downloadable image.`,
+      imageUrl: '/text2emoji/example.png'
+    });
+  %>
+  <body>
+    <%- include('./partials/header.ejs'); %>
+    <main>
     <section class="l-container">
       <h2>text2emoji</h2>
       <div class="l-flex-vertical">
@@ -52,8 +46,8 @@
       </div>
     </section>
     <div class="divider"></div>
-  </main>
-  <!--include('snippets/footer.html')-->
-  <script type="text/javascript" src="./main.js"></script>
-</body>
+    </main>
+    <%- include('./partials/footer.ejs'); %>
+    <script type="text/javascript" src="./main.js"></script>
+  </body>
 </html>
