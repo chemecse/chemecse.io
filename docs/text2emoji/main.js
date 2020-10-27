@@ -339,7 +339,7 @@ window.onload = () => {
   const downloadImageLinkElement = document.getElementById('download-image-link');
 
   const generate = () => {
-    const inputText = inputTextElement.value;
+    const inputText = (inputTextElement.value || '').trim();
     const generatedEmojiText = generateEmojiText(
       inputText,
       foregroundEmojiElement.value,
