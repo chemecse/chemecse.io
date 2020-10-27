@@ -342,8 +342,8 @@ window.onload = () => {
     const inputText = (inputTextElement.value || '').trim();
     const generatedEmojiText = generateEmojiText(
       inputText,
-      foregroundEmojiElement.value,
-      backgroundEmojiElement.value
+      (foregroundEmojiElement.value || '').trim(),
+      (backgroundEmojiElement.value || '').trim()
     );
     generatedEmojiTextElement.value = generatedEmojiText;
     generateEmojiImage(inputText, generatedEmojiText, imageElement, downloadImageLinkElement);
