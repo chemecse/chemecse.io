@@ -340,13 +340,18 @@ window.onload = () => {
 
   const generate = () => {
     const inputText = (inputTextElement.value || '').trim();
+    const foregroundEmoji = (foregroundEmojiElement.value || '').trim();
+    const backgroundEmoji = (backgroundEmojiElement.value || '').trim();
     const generatedEmojiText = generateEmojiText(
       inputText,
-      (foregroundEmojiElement.value || '').trim(),
-      (backgroundEmojiElement.value || '').trim()
+      foregroundEmoji,
+      backgroundEmoji
     );
     generatedEmojiTextElement.value = generatedEmojiText;
     generateEmojiImage(inputText, generatedEmojiText, imageElement, downloadImageLinkElement);
+    if (umami) {
+      umami.trackEvent(`?fg="${foregroundEmoji}"&bg="${backgroundEmoji}"&text="${inputText}"`, 'generate');
+    }
   }
 
   const set = (preset) => {
