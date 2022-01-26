@@ -349,7 +349,7 @@ window.onload = () => {
     );
     generatedEmojiTextElement.value = generatedEmojiText;
     generateEmojiImage(inputText, generatedEmojiText, imageElement, downloadImageLinkElement);
-    if (umami) {
+    if (typeof umami !== 'undefined') {
       umami.trackEvent(`?fg="${foregroundEmoji}"&bg="${backgroundEmoji}"&text="${inputText}"`, 'generate');
     }
   }
